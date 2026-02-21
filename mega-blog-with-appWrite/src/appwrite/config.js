@@ -36,8 +36,62 @@ catch (error)
 }
 }
 
+async updatepost(slug,{title , content , featureImage , status }){ // update post with all necessary fields
+try {
+    return await this.database.updateDocument(
+        conf.appwriteDatabaseID,
+        conf.appwriteTableID,
+        slug,
+        {
+            title , 
+            content ,
+            featureImage , 
+            status 
+            }
+    );
+} catch (error) {
+    console.log(error);
+}
+}
 
+async deletepost(slug){ // delete post by slug
+try {
+     await this.database.deleteDocument(
+        conf.appwriteDatabaseID,
+        conf.appwriteTableID,
+        slug
+    );
+    return true;
+} catch (error) {
+    console.log(error);
+    return false;
+}
+}
 
+async getpost(slug){ // get post by slug
+try {
+    return await this.database.getDocument(
+        conf.appwriteDatabaseID,
+        conf.appwriteTableID,
+        slug
+    )
+} catch (error) {
+    console.log(error);
+    return false;
+}
+}
+
+async getposts(queries = [Query.equal("status", "active")]){ // get all posts
+try {
+    return await this.database.listDocuments(
+        conf.appwriteDatabaseID,
+        conf.appwriteTableID,
+        queries
+    )
+} catch (error) {
+    console.log(error);
+    return false;
+}}
 
 
 }
