@@ -91,10 +91,45 @@ try {
 } catch (error) {
     console.log(error);
     return false;
-}}
-
-
+}
 }
 
+// upload file
+async uploadfile(file){
+try {
+    return await this.bucket.createFile(
+        conf.appwriteBucketID,
+        ID.unique(),
+        file
+        )
+} catch (error) {
+    console.log("error in appwrite ",error);
+    return false;
+}
+}
+
+// delete file
+async deletefile(fileID){
+try {
+     await this.bucket.deleteFile(
+        conf.appwriteBucketID,
+        fileID
+    ); 
+    return true;
+} catch (error) {
+    console.log("error in appwrite ",error);
+    return false;
+}
+}
+
+// get file preview
+getfilepreview(fileID){
+    return this.bucket.getFilePreview(
+        conf.appwriteBucketID,
+        fileID
+    );
+}
+
+}
 const service = new Service();
 export default service
