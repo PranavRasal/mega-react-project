@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState , useEffect } from 'react'
+import {useDispatch} from 'react-redux'
 import './App.css'
 
 function App() {
-console.log(import.meta.env.VITE_APPWRITE_URL);
+ const[loading,setLoading] = useState(true)
+ const dispatch = useDispatch()
 
   return (
 
     <>
-      <h1>Vite  React</h1>
+      <h1>Vite  <br></br>React</h1>
     </>
   )
 }
