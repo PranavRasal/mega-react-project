@@ -28,7 +28,7 @@ else{
 
 async login({email,password}){
 try{
- return await this.account.createEmailPasswordSession({email, password});
+ return await this.account.createEmailPasswordSession(email, password);
 }
 catch(error)
 {
@@ -42,9 +42,9 @@ try{
 }
 catch(error)
 {
-    throw error;  
+    console.log("Appwrite service :: getCurrentUser :: error", error);
+    return null;
   }
- return null;
 }
 
 async logout(){
